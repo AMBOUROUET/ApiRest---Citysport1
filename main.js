@@ -26,13 +26,12 @@ con.connect((err) => {
 
 // creation des routes
 
-// la route get permet de recuperer les donnees
-
+// afficher un message
 app.get("/", (req, res) => {
   res.send("Je suis Mr Gervais je suis sur le chemin courant");
 });
 
-// Permet d'acceder et recuperer toutes les donnees de la table chaussures
+// Recuperer les informations a rapport a la table chaussures
 
 app.get("/api/chaussures", (req, res) => {
   con.query("SELECT * FROM chaussures", (err, result) => {
@@ -42,7 +41,7 @@ app.get("/api/chaussures", (req, res) => {
   });
 });
 
-// Permet de recuperer une chaussures sur la base de son id
+// Recuperer les informations par rapport une chaussures sur la base de son id
 app.get("/api/chaussures/:id", (req, res) => {
   con.query(
     "SELECT * FROM chaussures WHERE idxChaussure=?",
@@ -55,7 +54,7 @@ app.get("/api/chaussures/:id", (req, res) => {
   );
 });
 
-// ajouter et envoyer des informations dans la base de donnee
+// ajouter une nouvelle chaussure
 
 app.post("/api/chaussures/add", (req, res) => {
   const idxMarque = req.body.idxMarque;
@@ -89,7 +88,7 @@ app.post("/api/marques/add", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.send("J'ai ajouter d'une marque");
+        res.send("J'ai ajouter une marque");
       }
     }
   );
